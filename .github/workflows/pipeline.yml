@@ -60,7 +60,7 @@ jobs:
   build: 
     needs: [unit_tests, lint]
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Build app
     steps:
     #  Obtiene el repositorio en el ultimo commit
     - name: Checkout last commit
