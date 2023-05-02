@@ -18,12 +18,21 @@ jobs:
       with:
         node-version: 16
     - name: Install dependencies
-      run: npm install --no-audit --no-fund --no-optional
+      run: npm ci
     - name: Lint
       run: npm run lint
     - name: Build App
       run: npm run build
     - name: Unit test
       run: npm run test
+    - name: Run App
+      run: npm run start-test
+    - name: Deploy to Heroku
+      uses: AkhileshNS/heroku-deploy@v3.12.13
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+        heroku_email: ${{secrets.HEROKU_APP_EMAIL}}
+
 
 
