@@ -1,5 +1,5 @@
 import express from 'express'
-// import { version } from './package.json'
+import { version } from './package.json'
 
 // Heroku dynamically sets a port
 // eslint-disable-next-line no-undef
@@ -10,9 +10,9 @@ app.get('/health', (req, res) => {
   res.send('ok')
 })
 
-// app.get('/version', (req, res) => {
-//   res.send(version)
-// })
+app.get('/version', (req, res) => {
+  res.send(version)
+})
 
 app.use(express.static('dist'))
 
