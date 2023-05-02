@@ -12,10 +12,11 @@ jobs:
    runs-on: ubuntu-latest
    steps:
     #  Cancela el deploy hecho anteriormente si continua corriendo
-    - name: Cancel Previous Redundant Bulds
-      uses: styfle/cancel-workflow-action
+    - name: Cancel Previous Redundant Builds
+      uses: styfle/cancel-workflow-action@0.9.1
       with:
         access_token: ${{ github.token }}
+
     #  Obtiene el repositorio en el ultimo commit
     - uses: actions/checkout@v3
       with:
