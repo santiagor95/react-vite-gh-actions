@@ -45,10 +45,10 @@ export function RickAndMortyCharacters() {
 
       <ul>
         {characters.map((character) => (
-          <li key={character.id}>
+          <div key={character.id}>
             <h3>{character.name}</h3>
             <img src={character.image} alt={character.name} />
-          </li>
+          </div>
         ))}
       </ul>
       <button disabled={page === 1} onClick={handlePrevPage}>
