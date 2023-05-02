@@ -41,6 +41,8 @@ export function RickAndMortyCharacters() {
 
   return (
     <>
+      <h1>Rick and Morty Characters</h1>
+
       <ul>
         {characters.map((character) => (
           <li key={character.id}>
