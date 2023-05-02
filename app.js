@@ -1,5 +1,4 @@
 import express from 'express'
-import { version } from './package.json'
 
 // Heroku dynamically sets a port
 // eslint-disable-next-line no-undef
@@ -10,8 +9,13 @@ app.get('/health', (req, res) => {
   res.send('ok')
 })
 
-app.get('/version', (req, res) => {
-  res.send(version)
+app.get('/version', async (req, res) => {
+
+  const packageJson = await import("./package.json", {
+    assert: { type: "json" },
+  });
+
+  res.send(packageJson.default.version)
 })
 
 app.use(express.static('dist'))
