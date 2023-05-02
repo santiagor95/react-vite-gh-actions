@@ -56,8 +56,8 @@ jobs:
       run: npm ci --no-audit --no-fund --no-optional
     - name: Unit test
       run: npm run test
-  
-  deploy:
+
+  build: 
     needs: [unit_tests, lint]
     runs-on: ubuntu-latest
     name: Deploy
@@ -76,6 +76,22 @@ jobs:
       run: npm ci --no-audit --no-fund --no-optional
     - name: Build App
       run: npm run build
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact
+      with:
+        name: dist
+        path: dist
+  
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact
+      with:
+        name: dist
+        path: dist
     - name: Deploy to Heroku
       if: ${{ github.event_name == 'push' }}
       uses: AkhileshNS/heroku-deploy@v3.12.13
