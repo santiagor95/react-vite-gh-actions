@@ -25,8 +25,8 @@ jobs:
       run: npm run build
     - name: Unit test
       run: npm run test
-    - name: Run App
-      run: npm run start
+    # - name: Run App
+    #   run: npm run start
     - name: Deploy to Heroku
       uses: AkhileshNS/heroku-deploy@v3.12.13
       with:
