@@ -87,11 +87,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v2.1.1
+    #  Obtiene el repositorio en el ultimo commit
+    - name: Checkout last commit
+      uses: actions/checkout@v3
       with:
-        name: dist
-        path: dist
+        fetch-depth: 0
     - name: Deploy to Heroku
       if: ${{ github.event_name == 'push' }}
       uses: AkhileshNS/heroku-deploy@v3.12.13
