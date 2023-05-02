@@ -13,7 +13,7 @@ jobs:
    steps:
     #  Cancela el deploy hecho anteriormente si continua corriendo
     - name: Cancel Previous Redundant Builds
-      uses: styfle/cancel-workflow-action@0.10.1
+      uses: styfle/cancel-workflow-action@0.11.0
       with:
         access_token: ${{ github.token }}
 
