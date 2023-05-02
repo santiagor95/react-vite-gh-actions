@@ -2,13 +2,20 @@ name: Deployment Pipeline
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   deploy:
    runs-on: ubuntu-latest
    steps:
+    #  Cancela el deploy hecho anteriormente si continua corriendo
+    - name: Cancel Previous Redundant Bulds
+      uses: styfle/cancel-workflow-action
+      with:
+        access_token: ${{ github.token }}
     #  Obtiene el repositorio en el ultimo commit
     - uses: actions/checkout@v3
       with:
@@ -28,6 +35,7 @@ jobs:
     # - name: Run App
     #   run: npm run start
     - name: Deploy to Heroku
+      if: ${{ github.event_name == 'push' }}
       uses: AkhileshNS/heroku-deploy@v3.12.13
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
