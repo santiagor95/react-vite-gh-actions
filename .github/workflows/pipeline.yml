@@ -11,6 +11,7 @@ jobs:
 
   #  Cancela el deploy hecho anteriormente si continua corriendo
   avoid_redundancy:
+    name: 'Cancelar ultimo build pendiente'
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Redundant Builds
