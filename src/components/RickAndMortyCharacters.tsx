@@ -47,7 +47,7 @@ export function RickAndMortyCharacters() {
         {characters.map((character) => (
           <li key={character.id}>
             <h3>{character.name}</h3>
-            <img src={character.image} alt="" />
+            <img src={character.image} alt={character.name} />
           </li>
         ))}
       </ul>
