@@ -49,7 +49,7 @@ export function RickAndMortyCharacters() {
             <h2>{character.name}</h2>
             <img src={character.image} alt={character.name} />
             <p>{character.origin.name}</p>
-            <a href={character.url}>{character.type}</a>
+            <a href={character.url}>{character.name}</a>
           </div>
         ))}
       </ul>
