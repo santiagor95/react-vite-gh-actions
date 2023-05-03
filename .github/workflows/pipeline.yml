@@ -19,24 +19,6 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  dependencies:
-    name: Install node dependencies
-    runs-on: ubuntu-latest
-    steps:
-      #  Obtiene el repositorio en el ultimo commit
-    - name: Checkout last commit
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    # Intstala ambiente node
-    - name: Setup node env
-      uses: actions/setup-node@v3
-      with:
-        cache: npm
-        node-version: 16
-    - name: Install dependencies
-      run: npm ci
-
   lint: 
     needs: [dependencies]
     name: Lint
@@ -105,23 +87,23 @@ jobs:
   #       name: dist
   #       path: dist
   
-  deploy:
-    needs: [unit_tests]
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-    #  Obtiene el repositorio en el ultimo commit
-    - name: Checkout last commit
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Deploy to Heroku
-      if: ${{ github.event_name == 'push' }}
-      uses: AkhileshNS/heroku-deploy@v3.12.13
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-        heroku_email: ${{secrets.HEROKU_APP_EMAIL}}
-        healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/health"
-        checkstring: "ok"
-        rollbackonhealthcheckfailed: true
+  # deploy:
+  #   needs: [unit_tests]
+  #   runs-on: ubuntu-latest
+  #   name: Deploy
+  #   steps:
+  #   #  Obtiene el repositorio en el ultimo commit
+  #   - name: Checkout last commit
+  #     uses: actions/checkout@v3
+  #     with:
+  #       fetch-depth: 0
+  #   - name: Deploy to Heroku
+  #     if: ${{ github.event_name == 'push' }}
+  #     uses: AkhileshNS/heroku-deploy@v3.12.13
+  #     with:
+  #       heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #       heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+  #       heroku_email: ${{secrets.HEROKU_APP_EMAIL}}
+  #       healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/health"
+  #       checkstring: "ok"
+  #       rollbackonhealthcheckfailed: true
