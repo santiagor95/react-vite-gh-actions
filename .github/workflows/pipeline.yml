@@ -106,7 +106,7 @@ jobs:
   #       path: dist
   
   deploy:
-    needs: [build]
+    needs: [unit_tests]
     runs-on: ubuntu-latest
     name: Deploy
     steps:
@@ -125,6 +125,3 @@ jobs:
         healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/health"
         checkstring: "ok"
         rollbackonhealthcheckfailed: true
-
-
-
