@@ -5,18 +5,18 @@ import express from 'express'
 const PORT = process.env.PORT || 8000
 const app = express()
 
-app.get('/health', (req, res) => {
-  res.send('ok')
-})
+// app.get('/health', (req, res) => {
+//   res.send('ok')
+// })
 
-app.get('/version', async (req, res) => {
+// app.get('/version', async (req, res) => {
 
-  const packageJson = await import("./package.json", {
-    assert: { type: "json" },
-  });
+//   const packageJson = await import("./package.json", {
+//     assert: { type: "json" },
+//   });
 
-  res.send(packageJson.default.version)
-})
+//   res.send(packageJson.default.version)
+// })
 
 app.use(express.static('dist'))
 
